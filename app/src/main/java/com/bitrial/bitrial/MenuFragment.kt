@@ -10,15 +10,9 @@ import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
 import com.bitrial.bitrial.databinding.FragmentMenuBinding
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class MenuFragment : Fragment() {
 
     private var _binding: FragmentMenuBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
