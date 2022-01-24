@@ -1,5 +1,6 @@
 package com.bitrial.bitrial
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,12 +26,21 @@ class MenuFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val rotation = AnimationUtils.loadAnimation(requireContext(), R.anim.rotate)
         rotation.fillAfter = true
         binding.backgroundImg.startAnimation(rotation)
+
+        binding.buttonPlay.setOnClickListener {
+            findNavController().navigate(R.id.cardFragment)
+        }
     }
 
     override fun onDestroyView() {

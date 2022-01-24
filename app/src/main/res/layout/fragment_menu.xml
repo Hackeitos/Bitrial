@@ -61,20 +61,24 @@
             android:gravity="center">
 
         <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_first"
+                android:id="@+id/button_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/jugar"
                 app:cornerRadius="10dp"
-                android:textSize="48sp" />
+                android:textSize="48sp"
+                app:icon="@drawable/ic_baseline_play_arrow_24"
+                app:iconSize="60dp" />
 
         <com.google.android.material.button.MaterialButton
                 android:text="@string/anadir_pregunta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button2"
+                android:id="@+id/button_add_question"
                 app:cornerRadius="10dp"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:icon="@drawable/ic_baseline_add_24"
+                app:iconSize="30dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

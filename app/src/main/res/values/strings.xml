@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Bitrial</string>
 
-    <string name="jugar">Jugar!</string>
+    <string name="jugar">Jugar</string>
     <string name="anadir_pregunta">Añadir pregunta</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
