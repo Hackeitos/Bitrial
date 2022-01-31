@@ -16,9 +16,9 @@
     </fragment>
     <fragment
             android:id="@+id/cardFragment"
-            android:name="com.bitrial.bitrial.CardFragment"
+            android:name="com.bitrial.bitrial.CardsHolderFragment"
             android:label="fragment_card"
-            tools:layout="@layout/fragment_card" >
+            tools:layout="@layout/fragment_cards_holder" >
         <action
                 android:id="@+id/action_cardFragment_to_FirstFragment"
                 app:destination="@id/menuFragment" />

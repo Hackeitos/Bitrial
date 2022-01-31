@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="color_geografia" format="string"/>
+    <attr name="color_entretenimiento" format="string"/>
+    <attr name="color_historia" format="string"/>
+    <attr name="color_literatura" format="string"/>
+    <attr name="color_ciencias" format="string"/>
+    <attr name="color_deportes" format="string"/>
+</resources>

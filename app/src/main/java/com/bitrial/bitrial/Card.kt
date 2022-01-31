@@ -1,8 +1,13 @@
 package com.bitrial.bitrial
 
+import android.graphics.Color
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -10,31 +15,45 @@ import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
 
+enum class Categoria(val id: String, @DrawableRes val icon: Int, @AttrRes val color: Int) {
+    GEOGRAFIA("geografia", R.drawable.ic_map, R.attr.color_geografia),
+    ENTRETENIMIENTO("entretenimiento", R.drawable.ic_tv, R.attr.color_entretenimiento),
+    HISTORIA("historia", R.drawable.ic_book, R.attr.color_historia),
+    LITERATURA("literatura", R.drawable.ic_draw, R.attr.color_literatura),
+    CIENCIAS("ciencias", R.drawable.ic_science, R.attr.color_ciencias),
+    DEPORTES("deportes", R.drawable.ic_soccer, R.attr.color_deportes);
+}
+
 class Pregunta(json: JSONObject) {
-    val pregunta: String = json.getString("pregunta")
-    val respuesta: String = json.getString("respuesta")
+    val pregunta = json.getString("pregunta")
+    val respuesta = json.getString("respuesta")
 }
 
 class Card(json: JSONObject) {
-    val geografia = Pregunta(json.getJSONObject("geografia"))
-    val entretenimiento = Pregunta(json.getJSONObject("entretenimiento"))
-    val historia = Pregunta(json.getJSONObject("historia"))
-    val literatura = Pregunta(json.getJSONObject("literatura"))
-    val ciencias = Pregunta(json.getJSONObject("ciencias"))
-    val deportes = Pregunta(json.getJSONObject("deportes"))
+    val categories: Map<Categoria, Pregunta> = Categoria.values().map {
+        it to Pregunta(json.getJSONObject(it.id))
+    }.toMap()
 
     companion object {
         private const val address = "http://10.0.2.2:5000"
 //        private const val address = "http://localhost:5000"
 
-        fun get(queue: RequestQueue): Card? {
+        fun get(
+            queue: RequestQueue,
+            onSuccess: (Card) -> Unit,
+            onError: (VolleyError) -> Unit = {}
+        ) {
             val request = JsonObjectRequest(Request.Method.GET, "$address/card", null,
                 { response ->
-                    println(response.toString(4))
+                    val json = JSONObject(response.toString())
+                    onSuccess(Card(json))
                 },
-                { error -> println(error) })
+                { error ->
+                    error.printStackTrace()
+                    onError(error)
+                })
+
             queue.add(request)
-            return null
         }
     }
 }
