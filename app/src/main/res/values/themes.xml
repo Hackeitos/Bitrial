@@ -25,12 +25,13 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
 
-        <item name="color_geografia" >#0000FF</item>
-        <item name="color_entretenimiento" >#c900bf</item>
-        <item name="color_historia" >#dbcd00</item>
-        <item name="color_literatura" >#8600ab</item>
-        <item name="color_ciencias" >#09ab00</item>
-        <item name="color_deportes" >#d46d00</item>
+        <item name="color_geografia">#0000FF</item>
+        <item name="color_entretenimiento">#c900bf</item>
+        <item name="color_historia">#dbcd00</item>
+        <item name="color_literatura">#8600ab</item>
+        <item name="color_ciencias">#09ab00</item>
+        <item name="color_deportes">#d46d00</item>
+        <item name="color_logo_bg">#08000000</item>
     </style>
 
     <style name="Theme.Bitrial.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

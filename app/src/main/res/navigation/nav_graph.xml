@@ -13,6 +13,9 @@
         <action
                 android:id="@+id/action_FirstFragment_to_cardFragment"
                 app:destination="@id/cardFragment" />
+        <action
+                android:id="@+id/action_menuFragment_to_submitQuestionFragment"
+                app:destination="@id/submitQuestionFragment" />
     </fragment>
     <fragment
             android:id="@+id/cardFragment"
@@ -21,6 +24,15 @@
             tools:layout="@layout/fragment_cards_holder" >
         <action
                 android:id="@+id/action_cardFragment_to_FirstFragment"
+                app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+            android:id="@+id/submitQuestionFragment"
+            android:name="com.bitrial.bitrial.SubmitQuestionFragment"
+            android:label="fragment_submit_question"
+            tools:layout="@layout/fragment_submit_question" >
+        <action
+                android:id="@+id/action_submitQuestionFragment_to_menuFragment"
                 app:destination="@id/menuFragment" />
     </fragment>
 </navigation>

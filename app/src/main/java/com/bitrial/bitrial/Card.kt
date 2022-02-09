@@ -35,25 +35,11 @@ class Card(json: JSONObject) {
     }.toMap()
 
     companion object {
-        private const val address = "http://10.0.2.2:5000"
-//        private const val address = "http://localhost:5000"
-
         fun get(
-            queue: RequestQueue,
             onSuccess: (Card) -> Unit,
-            onError: (VolleyError) -> Unit = {}
+            onError: (String?) -> Unit = {}
         ) {
-            val request = JsonObjectRequest(Request.Method.GET, "$address/card", null,
-                { response ->
-                    val json = JSONObject(response.toString())
-                    onSuccess(Card(json))
-                },
-                { error ->
-                    error.printStackTrace()
-                    onError(error)
-                })
-
-            queue.add(request)
+            Requester.getJson("/card", { onSuccess(Card(it)) }, onError)
         }
     }
 }
