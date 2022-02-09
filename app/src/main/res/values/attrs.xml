@@ -6,4 +6,5 @@
     <attr name="color_literatura" format="string"/>
     <attr name="color_ciencias" format="string"/>
     <attr name="color_deportes" format="string"/>
+    <attr name="color_logo_bg" format="string"/>
 </resources>

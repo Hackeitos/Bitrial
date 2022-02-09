@@ -2,6 +2,10 @@ package com.bitrial.bitrial
 
 import android.content.Context
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -14,12 +18,18 @@ import androidx.lifecycle.LifecycleObserver
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.core.content.ContextCompat.getSystemService
+
+import android.hardware.SensorManager
+import android.util.FloatMath
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import kotlin.math.sqrt
 
 
 class CardsHolderFragment : Fragment() {
 
-    lateinit var requestQueue: RequestQueue
-    lateinit var currentCardContainer: CardContainer
+    var currentCardContainer: CardContainer? = null
     lateinit var cardPlaceholderView: FrameLayout
     lateinit var textViewError: TextView
     lateinit var loadingLayout: ConstraintLayout
@@ -29,10 +39,8 @@ class CardsHolderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (activity?.requestedOrientation != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+        if (activity?.requestedOrientation != ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE)
             return null
-
-        requestQueue = Volley.newRequestQueue(requireContext())
 
         return inflater.inflate(R.layout.fragment_cards_holder, container, false)
     }
@@ -47,8 +55,16 @@ class CardsHolderFragment : Fragment() {
 
         newCard()
 
+        cardPlaceholderView.setOnClickListener {
+            currentCardContainer?.flipCard()
+        }
+
         fab.setOnClickListener {
-            currentCardContainer.flipCard()
+            Toast.makeText(
+                requireContext(),
+                "Deja pulsado para pasar de tarjeta.",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
         fab.setOnLongClickListener {
@@ -60,13 +76,13 @@ class CardsHolderFragment : Fragment() {
     private fun newCard() {
         setVisible(loadingLayout)
 
-        Card.get(requestQueue, { card ->
+        Card.get({ card ->
             currentCardContainer = CardContainer(card)
             parentFragmentManager.beginTransaction()
-                .replace(R.id.card_placeholder, currentCardContainer, "card").commit()
+                .replace(R.id.card_placeholder, currentCardContainer!!, "card").commit()
             setVisible(cardPlaceholderView)
         }, { error ->
-            textViewError.text = "Error obteniendo tarjeta:\n\n${error.message}"
+            textViewError.text = "Error obteniendo tarjeta:\n\n$error"
             setVisible(textViewError)
         })
     }
@@ -84,8 +100,6 @@ class CardsHolderFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
     }
-
-
 }

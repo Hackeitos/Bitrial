@@ -1,6 +1,5 @@
 package com.bitrial.bitrial
 
-import android.R
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -9,23 +8,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import com.bitrial.bitrial.databinding.FragmentCardContainerBinding
 import com.bitrial.bitrial.databinding.QuestionLayoutBinding
-import android.view.animation.AccelerateDecelerateInterpolator
 
 import android.animation.ObjectAnimator
 import android.view.animation.LinearInterpolator
+import androidx.annotation.AttrRes
 
 
+class CardContainer(private val card: Card?) : Fragment() {
 
-
-
-class CardContainer(private val card: Card) : Fragment() {
+    constructor() : this(null) {}
 
     lateinit var binding: FragmentCardContainerBinding
     lateinit var questionViews: List<QuestionLayoutBinding>
     private var answerMode = false
+    private var animBusy = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +46,12 @@ class CardContainer(private val card: Card) : Fragment() {
     }
 
     fun flipCard() {
+        card ?: return
+
+        if (animBusy)
+            return
+
+        animBusy = true
         answerMode = !answerMode
 
         val animation1 = ObjectAnimator.ofFloat(binding.constraintLayout, "rotationX", 0.0f, 90f)
@@ -66,20 +70,34 @@ class CardContainer(private val card: Card) : Fragment() {
                 animation2.start()
             }
         }
+
+        animation2.addUpdateListener {
+            if (it.currentPlayTime == animation2.duration)
+                animBusy = false
+        }
+    }
+
+    private fun getThemeColor(@AttrRes key: Int): Int {
+        val colorString = TypedValue()
+        requireContext().theme.resolveAttribute(key, colorString, true)
+
+        return Color.parseColor("${colorString.coerceToString()}")
     }
 
     private fun updateCard() {
+        card ?: return
+
+        binding.imageLogoBg.imageTintList =
+            ColorStateList.valueOf(getThemeColor(R.attr.color_logo_bg))
+
         questionViews.forEach { qBinding ->
             val category =
                 Categoria.valueOf(resources.getResourceEntryName(qBinding.root.id).uppercase())
             val question = card.categories[category]!!
 
             qBinding.image.setImageResource(category.icon)
-            val colorString = TypedValue()
-            requireContext().theme.resolveAttribute(category.color, colorString, true)
 
-            qBinding.image.imageTintList =
-                ColorStateList.valueOf(Color.parseColor("${colorString.coerceToString()}"))
+            qBinding.image.imageTintList = ColorStateList.valueOf(getThemeColor(category.color))
 
             if (answerMode)
                 qBinding.question.text = question.respuesta
