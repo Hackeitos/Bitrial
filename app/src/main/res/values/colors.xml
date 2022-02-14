@@ -8,8 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primary">#355070</color>
+    <color name="background">#041F37</color>
+
+    <color name="primary">#48FFD5</color>
     <color name="secondary">#4895EF</color>
 
-    <color name="bitrial_logo">#355070</color>
+    <color name="bitrial_logo">#48FFD5</color>
+    <color name="menu_fg">#48FFD5</color>
+    <color name="menu_bg">#48FFD5</color>
 </resources>

@@ -6,17 +6,17 @@
         android:layout_height="match_parent"
         tools:context=".CardContainer">
 
-    <ImageView
-            android:src="@drawable/bitrial_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageLogoBg" />
+    <!--    <ImageView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:id="@+id/imageLogoBg"-->
+    <!--            android:src="@drawable/bitrial_logo" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/constraintLayout"
-            android:translationZ="10dp">
+            android:id="@+id/constraintLayout">
+        <!--            android:translationZ="10dp"-->
 
         <include
                 layout="@layout/question_layout"
@@ -75,6 +75,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/ciencias"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+                android:src="@drawable/bitrial_logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageLogoBg"
+                app:tint="#FF0000" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
