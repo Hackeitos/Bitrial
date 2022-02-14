@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Requester necesita un contexto para funcionar, lo ponemos a MainActivity
+        // porque es la actividad visible en todo momento
         Requester.setContext(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -34,6 +36,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         when (navController.currentDestination?.id) {
+            R.id.menuFragment -> {
+                AlertDialog.Builder(this).setMessage("Desea salir de la aplicacion?")
+                    .setPositiveButton("Si") { _, _ -> finish() }
+                    .setNegativeButton("No") { _, _ -> }
+                    .show()
+            }
+
             R.id.cardFragment -> {
                 AlertDialog.Builder(this).setMessage("Desea volver al menu principal?")
                     .setPositiveButton("Si") { _, _ -> navController.navigate(R.id.menuFragment) }
@@ -41,12 +50,7 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
 
-            R.id.menuFragment -> {
-                AlertDialog.Builder(this).setMessage("Desea salir de la aplicacion?")
-                    .setPositiveButton("Si") { _, _ -> finish() }
-                    .setNegativeButton("No") { _, _ -> }
-                    .show()
-            }
+            R.id.submitQuestionFragment -> { navController.navigate(R.id.menuFragment) }
         }
     }
 }

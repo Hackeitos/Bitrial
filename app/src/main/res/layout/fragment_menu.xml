@@ -74,7 +74,7 @@
                 android:text="@string/anadir_pregunta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button_add_question"
+                android:id="@+id/button_submit_question"
                 app:cornerRadius="10dp"
                 android:textSize="24sp"
                 app:icon="@drawable/ic_baseline_add_24"

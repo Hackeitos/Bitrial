@@ -7,12 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.bitrial.bitrial.databinding.FragmentCardContainerBinding
 import com.bitrial.bitrial.databinding.FragmentSubmitQuestionBinding
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONObject
 
-
+// Fragment para poder proponer preguntas a la base de datos
 class SubmitQuestionFragment : Fragment() {
 
     lateinit var binding: FragmentSubmitQuestionBinding
@@ -54,27 +53,28 @@ class SubmitQuestionFragment : Fragment() {
             jsonReq.put("question", pregunta)
             jsonReq.put("answer", respuesta)
 
-            val successMsg = {
+            val showSuccessDialog = {
                 AlertDialog.Builder(requireContext()).setTitle("Pregunta añadida")
                     .setMessage("Has añadido una pregunta a la base de datos, pero para que tu pregunta aparezca en las tarjetas debe ser aprobada primero por los moderadores.")
                     .setPositiveButton("Entendido") { _, _ -> findNavController().popBackStack() }
                     .show()
             }
 
-            val errorMsg = { msg: String? ->
+            val showErrorDialog = { msg: String? ->
                 AlertDialog.Builder(requireContext()).setTitle("Error")
                     .setMessage("Ha habido un error intentando añadir tu preunta a la base de datos:\n\n$msg")
                     .setPositiveButton("Aceptar") { _, _ -> }
                     .show()
             }
 
+            // POST con los datos de las preguntas al servidor
             Requester.postJson("/submit-question", jsonReq, { json ->
                 if (json.getBoolean("success"))
-                    successMsg()
+                    showSuccessDialog()
                 else
-                    errorMsg(json.getString("msg"))
+                    showErrorDialog(json.getString("msg"))
             }, { error ->
-                errorMsg(error)
+                showErrorDialog(error)
             })
         }
     }

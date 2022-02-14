@@ -26,7 +26,8 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import kotlin.math.sqrt
 
-
+// Fragment que contiene al contenedor que contiene la tarjeta.
+// Por cada cambio de tarjeta se genera un contenedor nuevo
 class CardsHolderFragment : Fragment() {
 
     var currentCardContainer: CardContainer? = null
@@ -87,6 +88,10 @@ class CardsHolderFragment : Fragment() {
         })
     }
 
+    // Metodo de ayuda que pone visible solo una de las siguientes:
+    // La rueda de "cargando": mientras esta cargando
+    // La tarjeta: Si todo ha ido bien
+    // El mensaje de error: Si ha habido algun error
     private fun setVisible(view: View) {
         val list = listOf(loadingLayout, cardPlaceholderView, textViewError)
 

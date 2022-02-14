@@ -15,6 +15,7 @@ import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
 
+// Indice de todas las categorias
 enum class Categoria(val id: String, @DrawableRes val icon: Int, @AttrRes val color: Int) {
     GEOGRAFIA("geografia", R.drawable.ic_map, R.attr.color_geografia),
     ENTRETENIMIENTO("entretenimiento", R.drawable.ic_tv, R.attr.color_entretenimiento),
@@ -24,11 +25,13 @@ enum class Categoria(val id: String, @DrawableRes val icon: Int, @AttrRes val co
     DEPORTES("deportes", R.drawable.ic_soccer, R.attr.color_deportes);
 }
 
+// CLase pregunta para tener los datos ordenados
 class Pregunta(json: JSONObject) {
     val pregunta = json.getString("pregunta")
     val respuesta = json.getString("respuesta")
 }
 
+// Una tarjeta que contiene un diccionario con una pregunta en cada categoria
 class Card(json: JSONObject) {
     val categories: Map<Categoria, Pregunta> = Categoria.values().map {
         it to Pregunta(json.getJSONObject(it.id))
@@ -39,7 +42,7 @@ class Card(json: JSONObject) {
             onSuccess: (Card) -> Unit,
             onError: (String?) -> Unit = {}
         ) {
-            Requester.getJson("/card", { onSuccess(Card(it)) }, onError)
+            Requester.getJson("/card", { json -> onSuccess(Card(json)) }, onError)
         }
     }
 }

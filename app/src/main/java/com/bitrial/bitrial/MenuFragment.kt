@@ -21,11 +21,9 @@ class MenuFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
         _binding = FragmentMenuBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onResume() {
@@ -36,6 +34,7 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Animacion de giro del fondo
         val animation = ObjectAnimator.ofFloat(binding.backgroundImg, "rotation", 0.0f, 360f)
         animation.duration = 80000
         animation.interpolator = LinearInterpolator()
@@ -46,7 +45,7 @@ class MenuFragment : Fragment() {
             findNavController().navigate(R.id.cardFragment)
         }
 
-        binding.buttonAddQuestion.setOnClickListener {
+        binding.buttonSubmitQuestion.setOnClickListener {
             findNavController().navigate(R.id.submitQuestionFragment)
         }
     }

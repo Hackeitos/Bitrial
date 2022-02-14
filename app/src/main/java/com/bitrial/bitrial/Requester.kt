@@ -7,6 +7,12 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 
+// Clase que permite interactuar con la API de preguntas de bitrial™
+// Los metodos admiten los siguientes parametros:
+// endpoint: El endpoint de la api (ejemplo "/card")
+// [OPCIONAL] data: En caso de ser una request de tipo POST, datos que pasar al servidor
+// onSuccess: Metodo al que llamar una vez se haya completado con exito
+// onError: Metodo al que llamar si algo ha ido mal
 object Requester {
 
     private lateinit var queue: RequestQueue

@@ -15,10 +15,10 @@ import android.animation.ObjectAnimator
 import android.view.animation.LinearInterpolator
 import androidx.annotation.AttrRes
 
-
+// Fragment que contiene una tarjeta
 class CardContainer(private val card: Card?) : Fragment() {
 
-    constructor() : this(null) {}
+    constructor() : this(null)
 
     lateinit var binding: FragmentCardContainerBinding
     lateinit var questionViews: List<QuestionLayoutBinding>
@@ -30,6 +30,7 @@ class CardContainer(private val card: Card?) : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCardContainerBinding.inflate(inflater, container, false).apply {
+            // Lista de las views que pueden contener preguntas
             questionViews =
                 listOf(geografia, entretenimiento, historia, literatura, ciencias, deportes)
         }
@@ -45,6 +46,7 @@ class CardContainer(private val card: Card?) : Fragment() {
         updateCard()
     }
 
+    // Metodo para girar la tarjeta y ver el otro lado
     fun flipCard() {
         card ?: return
 
@@ -84,6 +86,8 @@ class CardContainer(private val card: Card?) : Fragment() {
         return Color.parseColor("${colorString.coerceToString()}")
     }
 
+    // Actualizar la tarjeta en funcion de si esta en el lado de las preguntas o en el de las respuestas
+    // Este metodo tambien se encarga de poner los colores correctos de las categorias
     private fun updateCard() {
         card ?: return
 
