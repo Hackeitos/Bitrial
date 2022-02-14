@@ -4,24 +4,25 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MenuFragment">
+        tools:context=".MenuFragment"
+        android:background="@color/background">
 
     <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            tools:src="@drawable/starburst"
+            tools:src="@drawable/ic_fondovirus"
             android:id="@+id/backgroundImg"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:srcCompat="@drawable/starburst"
-            app:srcCompat="@drawable/starburst"
+            tools:srcCompat="@drawable/ic_fondovirus"
             android:scaleType="centerCrop"
             android:layout_marginStart="-200dp"
             android:layout_marginTop="-200dp"
             android:layout_marginEnd="-200dp"
-            android:layout_marginBottom="-200dp" />
+            android:layout_marginBottom="-200dp"
+            app:srcCompat="@drawable/ic_fondovirus" />
 
     <FrameLayout
             android:layout_width="330dp"
@@ -34,7 +35,7 @@
             android:id="@+id/frameLayout">
 
         <com.google.android.material.imageview.ShapeableImageView
-                android:background="@color/white"
+                android:background="#505080"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -47,6 +48,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/imageLogo"
                 app:tint="@color/bitrial_logo" />
+
 
     </FrameLayout>
 
@@ -68,7 +70,10 @@
                 app:cornerRadius="10dp"
                 android:textSize="48sp"
                 app:icon="@drawable/ic_baseline_play_arrow_24"
-                app:iconSize="60dp" />
+                app:iconSize="60dp"
+                app:iconTint="@color/primary"
+                android:textColor="@color/primary"
+                android:backgroundTint="#505080" />
 
         <com.google.android.material.button.MaterialButton
                 android:text="@string/anadir_pregunta"
@@ -78,7 +83,10 @@
                 app:cornerRadius="10dp"
                 android:textSize="24sp"
                 app:icon="@drawable/ic_baseline_add_24"
-                app:iconSize="30dp" />
+                app:iconSize="30dp"
+                app:iconTint="@color/primary"
+                android:textColor="@color/primary"
+                android:backgroundTint="#505080" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

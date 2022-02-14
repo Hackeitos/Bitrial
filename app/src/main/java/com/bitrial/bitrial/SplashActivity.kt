@@ -11,11 +11,15 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        startTimer()
+//        startTimer()
+        val intent = Intent(applicationContext, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
-    fun startTimer(){
-        object: CountDownTimer(3000,1000){
+
+    fun startTimer() {
+        object : CountDownTimer(3000, 1000) {
             override fun onTick(p0: Long) {
 
             }
