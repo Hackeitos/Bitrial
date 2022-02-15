@@ -1,7 +1,9 @@
 package com.bitrial.bitrial
 
 import android.app.AlertDialog
+import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -12,10 +14,19 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import androidx.annotation.AttrRes
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 import com.bitrial.bitrial.databinding.ActivityMainBinding
+
+fun Fragment.getThemeColor(@AttrRes key: Int): Int {
+    val colorString = TypedValue()
+    requireContext().theme.resolveAttribute(key, colorString, true)
+
+    return Color.parseColor("${colorString.coerceToString()}")
+}
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

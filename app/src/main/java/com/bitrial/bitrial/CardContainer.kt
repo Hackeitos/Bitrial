@@ -79,20 +79,10 @@ class CardContainer(private val card: Card?) : Fragment() {
         }
     }
 
-    private fun getThemeColor(@AttrRes key: Int): Int {
-        val colorString = TypedValue()
-        requireContext().theme.resolveAttribute(key, colorString, true)
-
-        return Color.parseColor("${colorString.coerceToString()}")
-    }
-
     // Actualizar la tarjeta en funcion de si esta en el lado de las preguntas o en el de las respuestas
     // Este metodo tambien se encarga de poner los colores correctos de las categorias
     private fun updateCard() {
         card ?: return
-
-        binding.imageLogoBg.imageTintList =
-            ColorStateList.valueOf(getThemeColor(R.attr.color_logo_bg))
 
         questionViews.forEach { qBinding ->
             val category =

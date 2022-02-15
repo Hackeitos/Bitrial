@@ -2,6 +2,7 @@ package com.bitrial.bitrial
 
 import android.content.Context
 import android.content.pm.ActivityInfo
+import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -22,6 +23,7 @@ import androidx.core.content.ContextCompat.getSystemService
 
 import android.hardware.SensorManager
 import android.util.FloatMath
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import kotlin.math.sqrt
@@ -35,6 +37,7 @@ class CardsHolderFragment : Fragment() {
     lateinit var textViewError: TextView
     lateinit var loadingLayout: ConstraintLayout
     lateinit var fab: FloatingActionButton
+    lateinit var imageLogoBg: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +56,7 @@ class CardsHolderFragment : Fragment() {
         cardPlaceholderView = view.findViewById(R.id.card_placeholder)
         textViewError = view.findViewById(R.id.textViewError)
         loadingLayout = view.findViewById(R.id.loadingLayout)
+        imageLogoBg = view.findViewById(R.id.imageLogoBg)
 
         newCard()
 
