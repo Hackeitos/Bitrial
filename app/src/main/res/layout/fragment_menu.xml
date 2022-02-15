@@ -8,46 +8,46 @@
         android:background="@color/background">
 
     <ImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            tools:src="@drawable/ic_fondovirus"
-            android:id="@+id/backgroundImg"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:srcCompat="@drawable/ic_fondovirus"
-            android:scaleType="centerCrop"
-            android:layout_marginStart="-200dp"
-            android:layout_marginTop="-200dp"
-            android:layout_marginEnd="-200dp"
-            android:layout_marginBottom="-200dp"
-            app:srcCompat="@drawable/ic_fondovirus" />
+        android:id="@+id/backgroundImg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="-800dp"
+        android:layout_marginTop="-200dp"
+        android:layout_marginEnd="-800dp"
+        android:layout_marginBottom="-200dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:srcCompat="@drawable/ic_fondovirus"
+        tools:src="@drawable/ic_fondovirus"
+        tools:srcCompat="@drawable/ic_fondovirus" />
 
     <FrameLayout
-            android:layout_width="330dp"
-            android:layout_height="330dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.16000003"
-            android:id="@+id/frameLayout">
+        android:id="@+id/frameLayout"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
-                android:background="#505080"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/imageLogoBg"
-                android:padding="26dp" />
+            android:id="@+id/imageLogoBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#505080"
+            android:padding="26dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
         <ImageView
-                android:src="@drawable/bitrial_logo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/imageLogo"
-                app:tint="@color/bitrial_logo" />
+            android:id="@+id/imageLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bitrial_logo"
+            app:tint="@color/bitrial_logo" />
 
 
     </FrameLayout>
@@ -88,5 +88,24 @@
                 android:textColor="@color/primary"
                 android:backgroundTint="#505080" />
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#505080"
+        android:fontFamily="sans-serif-smallcaps"
+        android:padding="10dp"
+        android:text="Mr. Mateos y Don Daniel\npresentan..."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="#00000000" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
